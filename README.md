@@ -790,6 +790,7 @@ element.appendChild(para);
 以上我们使用了 appendChild() 方法，它用于添加新元素到尾部。
 如果我们需要将新元素添加到开始位置，可以使用 insertBefore() 方法:
 
+
 ~~~
 <!DOCTYPE html>
 <html>
@@ -818,16 +819,16 @@ element.insertBefore(para, child);
 </html>
 ~~~
 
+<h2>要移除一个元素，你需要知道该元素的父元素。</h2>
+再通过	parent.removeChild()	来移除该元素
 
-<h4>要移除一个元素，你需要知道该元素的父元素。</h4>
-在通过	parent.child	来移除该元素
 
 ~~~
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-<title>titlr</title>
+<title>title</title>
 </head>
 <body>
 
@@ -837,9 +838,37 @@ element.insertBefore(para, child);
 </div>
  
 <script>
+var para = document.createElement("p");
+var node = document.createTextNode("这是一个新的段落。");
+para.appendChild(node);
+ 
 var parent = document.getElementById("div1");
 var child = document.getElementById("p1");
-parent.removeChild(child);
+parent.replaceChild(para, child);
+</script>
+
+</body>
+</html>
+
+~~~
+另一种方法:
+~~~
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>title</title>
+</head>
+<body>
+
+<ul id="myList"><li>Coffee</li><li>Tea</li><li>Milk</li></ul>
+<p id="demo">单击按钮移除列表的第一项</p>
+<button onclick="myFunction()">点我</button>
+<script>
+function myFunction(){
+	var list=document.getElementById("myList");
+	list.removeChild(list.childNodes[0]);
+}
 </script>
 
 </body>
@@ -877,8 +906,7 @@ parent.replaceChild(para, child);
 ~~~
 
 
-
-getElementsByTagName() 方法返回 HTMLCollection 对象。
+<b>getElementsByTagName()</b> 方法返回 HTMLCollection 对象。
 
 HTMLCollection 对象类似包含 HTML 元素的一个数组。
 
@@ -911,11 +939,13 @@ document.getElementById("demo").innerHTML = "第二个段落的内容为:<span s
 
 集合中的元素可以通过索引(以 0 为起始位置)来访问。<br>
 访问第一个 p 元素可以是以下代码:
-myCollection[0].innerHTML
+
+	myCollection[0].innerHTML
 
 <hr>
 
 HTMLCollection 对象的 length 属性定义了集合中元素的数量
+
 ~~~
 <!DOCTYPE html>
 <html>
